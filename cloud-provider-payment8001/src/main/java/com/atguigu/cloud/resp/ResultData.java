@@ -1,7 +1,11 @@
 package com.atguigu.cloud.resp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 /**
  * @auther zzyy
@@ -14,11 +18,14 @@ public class ResultData<T> {
     private String code;/** 结果状态 ,具体状态码参见枚举类ReturnCodeEnum.java*/
     private String message;
     private T data;
-    private long timestamp ;
+    private String timestamp ;
+
 
 
     public ResultData (){
-        this.timestamp = System.currentTimeMillis();
+        SimpleDateFormat sdf = new SimpleDateFormat("", Locale.SIMPLIFIED_CHINESE);
+        sdf.applyPattern("yyyy:MM:dd HH:mm:ss");
+        this.timestamp = sdf.format(System.currentTimeMillis());
     }
 
     public static <T> ResultData<T> success(T data) {
