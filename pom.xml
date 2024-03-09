@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>mybatis_generator2024</module>
+        <module>cloud-provider-payment8001</module>
     </modules>
     <packaging>pom</packaging>
 
