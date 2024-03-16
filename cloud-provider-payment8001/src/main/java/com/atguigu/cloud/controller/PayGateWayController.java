@@ -28,6 +28,9 @@ public class PayGateWayController
     @GetMapping(value = "/pay/gateway/get/{id}")
     public ResultData<Pay> getById(@PathVariable("id") Integer id)
     {
+//        long startTime = System.currentTimeMillis();
+//        long endTime = System.currentTimeMillis();
+//        System.out.println("-------costTime: " + (endTime - startTime ) + " 毫秒");
         Pay pay = payService.getById(id);
         return ResultData.success(pay);
     }

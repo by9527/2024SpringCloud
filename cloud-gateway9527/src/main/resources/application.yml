@@ -28,7 +28,7 @@ spring:
 #            - Query=username, \d+  # 要有参数名username并且值还要是整数才能路由
 #            - RemoteAddr=192.168.2.1/24 # 外部访问我的IP限制，最大跨度不超过32，目前是1~24它们是 CIDR 表示法。实际访问的时候还是输入自己的ipv4地址192.168.2.4
 #            - Method=GET,POST
-            - My=gold
+#            - My=gold
 #            - name: My
 #              args:
 #                userType: diamond
@@ -45,7 +45,8 @@ spring:
               #- Path=/gateway/filter/**              # 断言，为配合PrefixPath测试过滤，暂时注释掉/pay
               #- Path=/XYZ/abc/{segment}           # 断言，为配合SetPath测试，{segment}的内容最后被SetPath取代
           filters:
-               - RedirectTo=302, http://www.atguigu.com/ # 访问http://localhost:9527/pay/gateway/filter跳转到http://www.atguigu.com/
+               - My=atguigu
+               #- RedirectTo=302, http://www.atguigu.com/ # 访问http://localhost:9527/pay/gateway/filter跳转到http://www.atguigu.com/
               #- SetPath=/pay/gateway/{segment}  # {segment}表示占位符，你写abc也行但要上下一致
               #- PrefixPath=/pay # http://localhost:9527/pay/gateway/filter
               #- AddRequestHeader=X-Request-atguigu1,atguiguValue1  # 请求头kv，若一头含有多参则重写一行设置
