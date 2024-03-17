@@ -1,5 +1,7 @@
 package com.atguigu.cloud.controller;
 
+import com.atguigu.cloud.apis.PayFeignSentinelApi;
+import com.atguigu.cloud.resp.ResultData;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,8 @@ public class OrderNacosController
 {
     @Resource
     private RestTemplate restTemplate;
+    @Resource
+    private PayFeignSentinelApi payFeignSentinelApi;
 
     @Value("${service-url.nacos-user-service}")
     private String serverURL;
@@ -25,5 +29,11 @@ public class OrderNacosController
     {
         String result = restTemplate.getForObject(serverURL + "/pay/nacos/" + id, String.class);
         return result+"\t"+"    我是OrderNacosController83调用者。。。。。。";
+    }
+
+    @GetMapping(value = "/consumer/pay/nacos/get/{orderNo}")
+    public ResultData getPayByOrderNo(@PathVariable("orderNo") String orderNo)
+    {
+        return payFeignSentinelApi.getPayByOrderNo(orderNo);
     }
 }
